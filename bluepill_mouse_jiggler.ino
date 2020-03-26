@@ -28,17 +28,28 @@ void setup()
 //Main loop - move mouse back and forth every 5 seconds
 
 void loop()
-{
+{  
   delay(1000);
 
+  for(int i = 0; i < 100; i++){
+    Mouse.move(0,1);
+    if (digitalRead(PC13)){ 
+        digitalWrite(PC13, LOW);      
+    } else {
+        digitalWrite(PC13, HIGH);            
+    }
+    delay(100);
+    Mouse.move(0,-1);
+  }
+
   while(true) { 
-    wiggle = random(2,5);
+    wiggle = random(3,8);
     Mouse.move(wiggle,0,0);
     delay(100);
     Mouse.move(0-wiggle,0,0);
 
-    w = random(30,60);
-        if (digitalRead(PC13)){ 
+    w = random(10,30);
+    if (digitalRead(PC13)){ 
         digitalWrite(PC13, LOW);      
     } else {
         digitalWrite(PC13, HIGH);            
